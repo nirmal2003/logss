@@ -1,0 +1,81 @@
+@use '../../abstracts' as *;
+
+// Header of the detail pane: title, path, stat tiles, notes and section titles.
+.detail {
+  padding: 16px 20px 32px;
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .sub {
+    color: token(muted);
+    font-family: token(mono);
+    font-size: 12px;
+    margin-top: 4px;
+    overflow-wrap: anywhere;
+  }
+}
+
+// Click to copy the full trace ID.
+.trace_id {
+  cursor: pointer;
+  border-bottom: 1px dotted token(muted);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 6px;
+}
+
+.stat {
+  background: token(panel_2);
+  border-radius: $radius_large;
+  padding: 8px 12px;
+  min-width: 88px;
+
+  // Value and key (label).
+  .v {
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .k {
+    color: token(muted);
+    font-size: 11px;
+  }
+}
+
+.notes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+// A section title with a control on the right, e.g. Timeline + "Group repeated calls".
+.section_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  .check {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}
+
+.section_title {
+  @include caps_label(12px, 0.5px);
+  font-weight: 600;
+  margin: 20px 0 8px;
+}

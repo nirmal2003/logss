@@ -1,0 +1,5 @@
+// The detail pane, top to bottom: header and stats, issue cards, bodies, timeline.
+@use 'header';
+@use 'issues';
+@use 'bodies';
+@use 'waterfall';

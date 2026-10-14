@@ -1,0 +1,16 @@
+@use 'sass:meta';
+@use '../abstracts' as *;
+
+:root {
+  color-scheme: light;
+  @include emit_colors($light_colors);
+  --mono: #{meta.inspect($font_mono)};
+  --sans: #{meta.inspect($font_sans)};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    @include emit_colors($dark_colors);
+  }
+}

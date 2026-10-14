@@ -1,0 +1,24 @@
+@use '../../abstracts' as *;
+
+// Request and response bodies, side by side; stacked when narrow.
+.bodies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
+}
+
+.body_block {
+  border: 1px solid token(border);
+  border-radius: $radius;
+  padding: 8px 10px;
+  background: token(panel_2);
+  min-width: 0;
+
+  .lbl {
+    @include caps_label;
+  }
+
+  pre {
+    @include scroll_pre(280px);
+  }
+}

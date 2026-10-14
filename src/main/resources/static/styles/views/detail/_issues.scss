@@ -1,0 +1,49 @@
+@use '../../abstracts' as *;
+
+// Issue cards in the detail pane. The left border shows the severity.
+.issue {
+  border: 1px solid token(border);
+  border-left: 3px solid token(info);
+  border-radius: $radius;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: token(panel);
+
+  &:hover {
+    background: token(panel_2);
+  }
+
+  // The issue whose spans are highlighted in the timeline.
+  &.active {
+    outline: 2px solid token(accent_soft);
+  }
+
+  @each $severity, $color in $severity_colors {
+    &.#{$severity} {
+      border-left-color: token($color);
+    }
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  .meta {
+    color: token(muted);
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .where {
+    font-family: token(mono);
+    font-size: 12px;
+    margin-top: 4px;
+    overflow-wrap: anywhere;
+  }
+
+  .fix {
+    margin-top: 6px;
+    font-size: 12.5px;
+  }
+}

@@ -1,0 +1,40 @@
+@use '../abstracts' as *;
+
+// The Requests and Queries views, and the list/detail split inside Requests.
+.view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.split {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+
+  @include below($breakpoint_stack) {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(200px, 45%) 1fr;
+  }
+}
+
+.list_pane {
+  overflow: auto;
+  border-right: 1px solid token(border);
+
+  @include below($breakpoint_stack) {
+    border-right: 0;
+    border-bottom: 1px solid token(border);
+  }
+}
+
+.detail_pane {
+  overflow: auto;
+  background: token(panel);
+}

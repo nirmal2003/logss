@@ -1,0 +1,62 @@
+@use '../abstracts' as *;
+
+// Filter box, checkboxes and the Pause/Clear buttons above the request list.
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid token(border);
+  background: token(panel);
+
+  input[type="search"] {
+    width: 280px;
+    max-width: 100%;
+    padding: 6px 10px;
+    border: 1px solid token(border);
+    border-radius: $radius;
+    background: token(bg);
+
+    &:focus {
+      outline: 2px solid token(accent_soft);
+      border-color: token(accent);
+    }
+  }
+}
+
+// A checkbox with its label; also used in the timeline header.
+.check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: token(muted);
+  cursor: pointer;
+}
+
+.spacer {
+  flex: 1;
+}
+
+button.ghost {
+  background: none;
+  border: 1px solid token(border);
+  border-radius: $radius;
+  padding: 5px 12px;
+  cursor: pointer;
+
+  &:hover {
+    background: token(panel_2);
+  }
+
+  // Pause while paused.
+  &.on {
+    background: token(accent_soft);
+    border-color: token(accent);
+  }
+}
+
+button.danger:hover {
+  color: token(high);
+  border-color: token(high);
+}

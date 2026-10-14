@@ -1,0 +1,16 @@
+// logss UI styles. Compile to the file the page loads (styles/main.css), from the logss/ folder:
+//
+//   sass src/main/resources/static/styles/main.scss src/main/resources/static/styles/main.css --no-source-map
+//
+// Each folder's _index.scss lists its partials. Order matters: later rules can override earlier ones.
+//
+//   abstracts/   variables and mixins (no CSS output)
+//   base/        theme colours, page-wide element styles
+//   layout/      top bar, panes, toolbar
+//   components/  tables, badges, empty states
+//   views/       requests list, detail pane, queries tab
+
+@use 'base';
+@use 'layout';
+@use 'components';
+@use 'views';

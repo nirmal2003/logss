@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+// A colour token as a CSS custom property, e.g. token(muted) -> var(--muted).
+@function token($name) {
+  @return var(--#{$name});
+}
+
+// Writes every entry of a palette map as a custom property: (bg: #fff) -> --bg: #fff.
+@mixin emit_colors($colors) {
+  @each $name, $value in $colors {
+    --#{$name}: #{$value};
+  }
+}
+
+// Styles that apply below a width, e.g. @include below($breakpoint_phone) { ... }.
+@mixin below($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+// Cuts text after a number of lines with an ellipsis.
+@mixin clamp_lines($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+// Small uppercase label above a block (section titles, "Request body", "Stack trace").
+@mixin caps_label($size: 11px, $spacing: 0.4px) {
+  font-size: $size;
+  color: token(muted);
+  text-transform: uppercase;
+  letter-spacing: $spacing;
+}
+
+// Monospace block for SQL, bodies and attributes that wraps and scrolls instead of overflowing.
+@mixin scroll_pre($max_height) {
+  margin: 6px 0 0;
+  font: 11.5px/1.5 token(mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: $max_height;
+  overflow: auto;
+}

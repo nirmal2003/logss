@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>logss</title>
+    <!-- Compiled from styles/main.scss -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">logss</div>
+    <nav class="tabs" aria-label="Views">
+        <button type="button" data-view="requests" class="active">Requests</button>
+        <button type="button" data-view="queries">Queries</button>
+    </nav>
+    <div class="status" id="status"><span class="dot"></span><span id="status_text">Connecting…</span></div>
+</header>
+
+<main>
+    <section id="view_requests" class="view">
+        <div class="toolbar">
+            <input id="filter" type="search" placeholder="Filter by route, path or job" autocomplete="off">
+            <label class="check"><input type="checkbox" id="issues_only"> Issues only</label>
+            <label class="check"><input type="checkbox" id="hide_warmup"> Hide warm-up</label>
+            <label class="check" title="Hides CORS preflight (OPTIONS) requests and SQL that ran outside any request, such as driver and Hibernate startup queries">
+                <input type="checkbox" id="hide_noise" checked> Hide noise</label>
+            <span class="spacer"></span>
+            <button type="button" id="pause" class="ghost">Pause</button>
+            <button type="button" id="clear" class="ghost danger">Clear</button>
+        </div>
+        <div class="split">
+            <div class="list_pane">
+                <table class="traces">
+                    <thead>
+                    <tr>
+                        <th class="col_time">Time</th>
+                        <th>Request</th>
+                        <th class="col_status">Status</th>
+                        <th class="col_num">Duration</th>
+                        <th class="col_num">Queries</th>
+                        <th class="col_issue">Issue</th>
+                    </tr>
+                    </thead>
+                    <tbody id="trace_rows"></tbody>
+                </table>
+                <div id="empty" class="empty" hidden></div>
+            </div>
+            <aside class="detail_pane" id="detail">
+                <p class="placeholder">Select a request to see what it did.</p>
+            </aside>
+        </div>
+    </section>
+
+    <section id="view_queries" class="view" hidden>
+        <p class="hint">Every distinct query across the stored requests, most total time first.</p>
+        <div class="table_scroll">
+            <table class="queries">
+                <thead>
+                <tr>
+                    <th>Query</th>
+                    <th class="col_num">Runs</th>
+                    <th class="col_num">Requests</th>
+                    <th class="col_num">Total</th>
+                    <th class="col_num">Avg</th>
+                    <th class="col_num">Max</th>
+                    <th>Used by</th>
+                </tr>
+                </thead>
+                <tbody id="query_rows"></tbody>
+            </table>
+        </div>
+        <div id="queries_empty" class="empty" hidden>No queries yet.</div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+// Design settings shared by every partial. Colours are emitted as CSS custom properties in
+// _theme.scss, so the page switches between light and dark without recompiling.
+
+// Light palette (the default).
+$light_colors: (
+  bg: #f6f7f9,
+  panel: #ffffff,
+  panel_2: #f0f2f5,
+  border: #e1e4e8,
+  text: #1d2127,
+  muted: #66707c,
+  accent: #2f6fde,
+  accent_soft: rgba(47, 111, 222, 0.12),
+  high: #d6413a,
+  high_soft: rgba(214, 65, 58, 0.1),
+  medium: #c27a00,
+  medium_soft: rgba(194, 122, 0, 0.12),
+  info: #66707c,
+  ok: #1f8a4c,
+  cat_http: #2f6fde,
+  cat_db: #8a4fd8,
+  cat_out: #0e8f8f,
+  cat_msg: #c27a00,
+  cat_code: #8c96a3,
+);
+
+// Dark palette, used when the OS prefers a dark colour scheme.
+$dark_colors: (
+  bg: #0f1216,
+  panel: #161a20,
+  panel_2: #1d222a,
+  border: #2a313b,
+  text: #e3e7ec,
+  muted: #8b95a3,
+  accent: #6b9cff,
+  accent_soft: rgba(107, 156, 255, 0.16),
+  high: #ff6b63,
+  high_soft: rgba(255, 107, 99, 0.13),
+  medium: #f0a73a,
+  medium_soft: rgba(240, 167, 58, 0.14),
+  info: #8b95a3,
+  ok: #4cc27f,
+  cat_http: #6b9cff,
+  cat_db: #b48cff,
+  cat_out: #3cc8c8,
+  cat_msg: #f0a73a,
+  cat_code: #6d7784,
+);
+
+// Span category (as stored in spans.category) to the colour token used for its dot and bar.
+// Categories not listed here ("code", "other") use cat_code.
+$category_colors: (
+  http_server: cat_http,
+  db: cat_db,
+  http_client: cat_out,
+  messaging: cat_msg,
+);
+
+// Issue severity (as stored in issues.severity) to its colour token.
+$severity_colors: (
+  high: high,
+  medium: medium,
+  info: info,
+);
+
+$font_mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+$font_sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+// The list and detail panes stack below this width.
+$breakpoint_stack: 900px;
+// The time and issue columns hide below this width; the issue moves under the request name.
+$breakpoint_phone: 640px;
+
+$radius_small: 4px;
+$radius: 6px;
+$radius_large: 8px;
+
+// Each level of the timeline tree is indented by this much.
+$indent_per_depth: 14px;

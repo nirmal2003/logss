@@ -1,0 +1,89 @@
+@use '../../abstracts' as *;
+
+// The request list: one row per request or job, newest first.
+
+table.traces tbody tr {
+  cursor: pointer;
+
+  &:hover {
+    background: token(panel_2);
+  }
+
+  &.selected {
+    background: token(accent_soft);
+  }
+
+  &.warmup td {
+    opacity: 0.6;
+  }
+}
+
+td.req_cell {
+  min-width: 200px;
+
+  // On phones the issue column is hidden and the issue shows here instead.
+  .issue_inline {
+    display: none;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+}
+
+td.issue_col {
+  min-width: 160px;
+}
+
+.req {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  min-width: 0;
+
+  .name {
+    font-weight: 500;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+}
+
+.req_path {
+  color: token(muted);
+  font-size: 12px;
+  font-family: token(mono);
+  overflow-wrap: anywhere;
+}
+
+.issue_cell {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  min-width: 0;
+
+  > span:nth-child(2) {
+    overflow-wrap: anywhere;
+  }
+}
+
+.more {
+  color: token(muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@include below($breakpoint_phone) {
+  .col_time,
+  td.time,
+  .col_issue,
+  td.issue_col {
+    display: none;
+  }
+
+  td.req_cell {
+    min-width: 0;
+
+    .issue_inline {
+      display: flex;
+    }
+  }
+}

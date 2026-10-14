@@ -1,0 +1,68 @@
+@use '../abstracts' as *;
+
+// Brand, Requests/Queries tabs and the live status on the right.
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 16px;
+  height: 48px;
+  background: token(panel);
+  border-bottom: 1px solid token(border);
+  flex-shrink: 0;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+
+  button {
+    background: none;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: $radius;
+    color: token(muted);
+    cursor: pointer;
+
+    &:hover {
+      color: token(text);
+      background: token(panel_2);
+    }
+
+    &.active {
+      color: token(text);
+      background: token(panel_2);
+      font-weight: 600;
+    }
+  }
+}
+
+.status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: token(muted);
+  white-space: nowrap;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: token(muted);
+  }
+
+  &.live .dot {
+    background: token(ok);
+  }
+
+  &.offline .dot {
+    background: token(high);
+  }
+}

@@ -1,0 +1,65 @@
+@use '../abstracts' as *;
+
+// Small inline markers: the method/JOB/SQL chip, tags, status codes and severity dots.
+.chip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: $radius_small;
+  background: token(panel_2);
+  color: token(muted);
+  white-space: nowrap;
+
+  &.method {
+    color: token(cat_http);
+    background: token(accent_soft);
+  }
+
+  &.job {
+    color: token(cat_msg);
+    background: token(medium_soft);
+  }
+}
+
+.tag {
+  font-size: 11px;
+  color: token(muted);
+  border: 1px solid token(border);
+  border-radius: $radius_small;
+  padding: 0 5px;
+  white-space: nowrap;
+}
+
+// HTTP status or ok/error for jobs.
+.code {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+
+  &.ok {
+    color: token(ok);
+  }
+
+  &.warn {
+    color: token(medium);
+  }
+
+  &.err {
+    color: token(high);
+  }
+}
+
+.sev {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+  transform: translateY(-1px);
+
+  @each $severity, $color in $severity_colors {
+    &.#{$severity} {
+      background: token($color);
+    }
+  }
+}

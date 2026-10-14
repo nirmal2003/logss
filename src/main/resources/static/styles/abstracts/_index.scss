@@ -1,0 +1,4 @@
+// Settings and helpers only; produces no CSS. Partials load it with
+// `@use '../abstracts' as *;` to get every variable, function and mixin.
+@forward 'variables';
+@forward 'mixins';

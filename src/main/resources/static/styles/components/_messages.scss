@@ -1,0 +1,51 @@
+@use '../abstracts' as *;
+
+// Empty states and hints.
+.placeholder {
+  color: token(muted);
+  padding: 24px;
+  margin: 0;
+}
+
+.empty {
+  padding: 32px 24px;
+  color: token(muted);
+
+  h3 {
+    color: token(text);
+    margin: 0 0 8px;
+    font-size: 15px;
+  }
+
+  // The setup instructions shown before the first trace arrives.
+  pre {
+    background: token(panel);
+    border: 1px solid token(border);
+    border-radius: $radius;
+    padding: 12px;
+    font: 12px/1.5 token(mono);
+    color: token(text);
+    overflow: auto;
+  }
+}
+
+// Line under the Queries tab header.
+.hint {
+  color: token(muted);
+  margin: 0;
+  padding: 12px 16px;
+  border-bottom: 1px solid token(border);
+  background: token(panel);
+}
+
+// Hint inside the detail pane, e.g. "Bodies aren't captured for this app".
+.hint_inline {
+  color: token(muted);
+  margin: 4px 0;
+  font-size: 12.5px;
+
+  code {
+    font-family: token(mono);
+    font-size: 12px;
+  }
+}

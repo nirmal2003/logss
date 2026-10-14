@@ -1,0 +1,31 @@
+@use '../abstracts' as *;
+
+// The Queries tab: every distinct query, most total time first.
+.table_scroll {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+table.queries {
+  td.sql {
+    font: 12px/1.5 token(mono);
+    max-width: 640px;
+    cursor: pointer;
+
+    .clamp {
+      @include clamp_lines(3);
+    }
+
+    // Clicked: show the whole query.
+    &.open .clamp {
+      display: block;
+    }
+  }
+
+  .routes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}

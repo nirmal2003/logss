@@ -1,0 +1,146 @@
+@use '../../abstracts' as *;
+
+// The timeline: one row per span or per group of repeated spans. Each row is
+// label | bar | duration, and --depth (set inline by app.js) indents the label.
+.waterfall {
+  border: 1px solid token(border);
+  border-radius: $radius;
+  overflow: hidden;
+}
+
+.wf_row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34% 64px;
+  gap: 8px;
+  align-items: start;
+  padding: 5px 8px;
+  border-bottom: 1px solid token(border);
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background: token(panel_2);
+  }
+
+  // Evidence of the selected issue.
+  &.hl {
+    background: token(medium_soft);
+  }
+
+  &.err .wf_name {
+    color: token(high);
+  }
+}
+
+.wf_label {
+  padding-left: calc(var(--depth) * #{$indent_per_depth});
+  min-width: 0;
+}
+
+.wf_name {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  min-width: 0;
+
+  .txt {
+    overflow-wrap: anywhere;
+  }
+}
+
+// Category dot before the span name.
+.cat {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+  background: token(cat_code);
+
+  @each $category, $color in $category_colors {
+    &.cat_#{$category} {
+      background: token($color);
+    }
+  }
+}
+
+// SQL, URL and error lines under a span name.
+.wf_sql,
+.wf_extra {
+  font: 11.5px/1.45 token(mono);
+  color: token(muted);
+  margin-top: 2px;
+  @include clamp_lines(2);
+}
+
+.wf_extra.err {
+  color: token(high);
+}
+
+.wf_bar {
+  position: relative;
+  height: 16px;
+  margin-top: 1px;
+
+  .bar {
+    position: absolute;
+    top: 4px;
+    height: 8px;
+    border-radius: 2px;
+    min-width: 2px;
+    background: token(cat_code);
+
+    @each $category, $color in $category_colors {
+      &.cat_#{$category} {
+        background: token($color);
+      }
+    }
+
+    // Comes after the categories so a failed span is always red.
+    &.err {
+      background: token(high);
+    }
+  }
+}
+
+.wf_dur {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: token(muted);
+  white-space: nowrap;
+}
+
+.wf_group .wf_name .txt {
+  font-weight: 600;
+}
+
+.caret {
+  display: inline-block;
+  width: 10px;
+  color: token(muted);
+}
+
+// The "×22" after a grouped span.
+.count {
+  color: token(medium);
+  font-weight: 600;
+}
+
+// Opened span: SQL with values, parameters, error, stack trace, raw attributes.
+.wf_detail {
+  padding: 8px 12px 12px calc(var(--depth) * #{$indent_per_depth} + 22px);
+  border-bottom: 1px solid token(border);
+  background: token(panel_2);
+
+  pre {
+    @include scroll_pre(320px);
+  }
+
+  .lbl {
+    @include caps_label;
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,23 @@
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Local trace store: holds captured SQL values and request bodies. Never commit.
+*.db
+*.db-wal
+*.db-shm
+
+# OpenTelemetry agent jars downloaded by demo/run-with-agent.sh
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Sass source maps (compile with --no-source-map)
+*.css.map
+
+# Local scripts and trace dumps from real apps
+run_*
+*.trace.txt
